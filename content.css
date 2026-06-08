@@ -1,0 +1,67 @@
+/* Stock Price Converter v3.0 - 價格標籤樣式 */
+
+.stock-converter-tag {
+  display: inline-block !important;
+  background: linear-gradient(135deg, #76b900 0%, #2d5016 100%) !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 3px !important;
+  margin-left: 6px !important;
+  margin-right: 2px !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.2px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+  cursor: default !important;
+  position: relative !important;
+  z-index: 99999 !important;
+  text-decoration: none !important;
+  border: none !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  width: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  float: none !important;
+  clear: none !important;
+  transform: none !important;
+  animation: stock-tag-appear 0.3s ease-out !important;
+  pointer-events: auto !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  text-align: left !important;
+  text-transform: none !important;
+  direction: ltr !important;
+}
+
+.stock-converter-tag:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 6px rgba(118, 185, 0, 0.5) !important;
+}
+
+.stock-converter-tag .stock-dot-indicator {
+  display: inline-block !important;
+  width: 7px !important;
+  height: 7px !important;
+  background: #a5ff00 !important;
+  border-radius: 50% !important;
+  margin-right: 4px !important;
+  vertical-align: middle !important;
+  box-shadow: 0 0 4px rgba(165, 255, 0, 0.6) !important;
+}
+
+@keyframes stock-tag-appear {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

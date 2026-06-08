@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+      background: #0d0d0d;
+      color: #ffffff;
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #76b900 0%, #2d5a00 100%);
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .header .logo { font-size: 26px; margin-bottom: 6px; }
+    .header h1 { font-size: 15px; font-weight: 700; }
+    .header p { font-size: 11px; opacity: 0.85; margin-top: 2px; }
+
+    .content { padding: 14px 16px; }
+
+    /* Ticker Section */
+    .ticker-section {
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      border: 1px solid #2a2a4a;
+    }
+    .ticker-section label {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .ticker-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .ticker-row input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #0f3460;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      outline: none;
+      letter-spacing: 1px;
+    }
+    .ticker-row input:focus { border-color: #76b900; }
+    .ticker-row button {
+      padding: 9px 16px;
+      background: #76b900;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .ticker-row button:hover { background: #8dd100; }
+
+    /* Price Display */
+    .stock-info {
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #2a2a4a;
+      text-align: center;
+    }
+    .stock-info .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .stock-info .ticker-name { font-size: 13px; color: #76b900; font-weight: 600; display: block; margin: 4px 0; }
+    .stock-info .price { font-size: 30px; font-weight: 700; color: #76b900; }
+    .stock-info .price .currency { font-size: 14px; color: #aaa; }
+    .stock-info .update-time { font-size: 10px; color: #666; margin-top: 4px; }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .stat-card {
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #2a2a4a;
+    }
+    .stat-card .stat-value { font-size: 15px; font-weight: 600; color: #4fc3f7; }
+    .stat-card .stat-label { font-size: 10px; color: #888; margin-top: 2px; }
+
+    /* Quote */
+    .motivation-quote {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0d1f00 100%);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      border-left: 3px solid #76b900;
+      font-size: 12px;
+      font-style: italic;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    /* Toggle */
+    .toggle-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      border: 1px solid #2a2a4a;
+    }
+    .toggle-section .toggle-label { font-size: 13px; font-weight: 500; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; cursor: pointer; inset: 0;
+      background-color: #333; transition: 0.3s; border-radius: 24px;
+    }
+    .toggle-slider:before {
+      position: absolute; content: ""; height: 18px; width: 18px;
+      left: 3px; bottom: 3px; background-color: white;
+      transition: 0.3s; border-radius: 50%;
+    }
+    .toggle-switch input:checked + .toggle-slider { background-color: #76b900; }
+    .toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+    /* Buttons */
+    .btn {
+      width: 100%; padding: 10px; border: none; border-radius: 8px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; margin-bottom: 8px;
+    }
+    .btn-primary { background: #76b900; color: #fff; }
+    .btn-primary:hover { background: #8dd600; }
+    .btn-secondary { background: #2a2a4a; color: #ccc; }
+    .btn-secondary:hover { background: #3a3a5a; }
+
+    /* Footer */
+    .footer {
+      text-align: center; padding: 10px; font-size: 10px;
+      color: #555; border-top: 1px solid #1a1a2e;
+    }
+    .footer a { color: #76b900; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">📈</div>
+    <h1 id="popup-title"></h1>
+    <p id="popup-subtitle"></p>
+  </div>
+
+  <div class="content">
+    <div class="ticker-section">
+      <label id="ticker-label"></label>
+      <div class="ticker-row">
+        <input type="text" id="ticker-input" placeholder="e.g. NVDA, AAPL, TSLA">
+        <button id="ticker-apply"></button>
+      </div>
+    </div>
+
+    <div class="stock-info">
+      <div class="label" id="stock-price-label"></div>
+      <div class="ticker-name" id="ticker-display">NVDA</div>
+      <div class="price">
+        <span class="currency">US$</span><span id="price-value">--</span>
+      </div>
+      <div class="update-time" id="update-time"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="detected-currency">--</div>
+        <div class="stat-label" id="detected-currency-label"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="exchange-rate">--</div>
+        <div class="stat-label" id="exchange-rate-label"></div>
+      </div>
+    </div>
+
+    <div class="motivation-quote" id="quote"></div>
+
+    <div class="toggle-section">
+      <span class="toggle-label" id="toggle-label"></span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-enabled" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <button class="btn btn-primary" id="btn-refresh"></button>
+    <button class="btn btn-secondary" id="btn-rescan"></button>
+  </div>
+
+  <div class="footer">
+    Stock Price Converter v3.0 | 
+    <a id="link-stock" href="#" target="_blank"></a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
